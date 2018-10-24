@@ -13,6 +13,9 @@ void ex::buy(const currency::transfer &transfer) {
     return;
   }
 
+  double received = transfer.quantity.amount;
+  received = received/10000;
+
   // get EOS supply
   double eos_supply = enumivo::token(N(stable.coin)).
 	   get_supply(enumivo::symbol_type(EOS_SYMBOL).name()).amount;
@@ -36,6 +39,9 @@ void ex::sell(const currency::transfer &transfer) {
   if (transfer.to != _self) {
     return;
   }
+
+  double received = transfer.quantity.amount;
+  received = received/10000;
 
     // get EOS supply
   double eos_supply = enumivo::token(N(stable.coin)).
